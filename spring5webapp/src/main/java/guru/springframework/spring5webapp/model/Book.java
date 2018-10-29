@@ -1,13 +1,22 @@
 package guru.springframework.spring5webapp.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
 public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
     private String title;
     private String isbn;
     private String publisher;
 
+    @ManyToMany
+    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
+    inverseJoinColumns = @JoinColumn(name = "authors_id"))
     private Set<Author> authors = new HashSet<>();
 
     public Book() {
@@ -17,6 +26,14 @@ public class Book {
         this.title = title;
         this.isbn = isbn;
         this.publisher = publisher;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Book(String title, String isbn, String publisher, Set<Author> authors) {
