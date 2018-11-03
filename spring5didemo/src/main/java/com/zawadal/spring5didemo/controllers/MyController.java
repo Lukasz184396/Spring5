@@ -1,4 +1,4 @@
-package com.zawadal.spring5didemo;
+package com.zawadal.spring5didemo.controllers;
 
 import org.springframework.stereotype.Controller;
 
