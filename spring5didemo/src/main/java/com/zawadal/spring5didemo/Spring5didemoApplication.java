@@ -1,6 +1,9 @@
 package com.zawadal.spring5didemo;
 
+import com.zawadal.spring5didemo.controllers.ConstructorInjectedController;
 import com.zawadal.spring5didemo.controllers.MyController;
+import com.zawadal.spring5didemo.controllers.PropertyInjectedController;
+import com.zawadal.spring5didemo.controllers.SetterInjectedController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -15,5 +18,9 @@ public class Spring5didemoApplication {
 		MyController controller = (MyController) ctx.getBean("myController");
 
 		controller.hello();
+
+		System.out.println(ctx.getBean(PropertyInjectedController.class).sayHallo());
+		System.out.println(ctx.getBean(SetterInjectedController.class).sayHello());
+		System.out.println(ctx.getBean(ConstructorInjectedController.class).sayHello());
 	}
 }
