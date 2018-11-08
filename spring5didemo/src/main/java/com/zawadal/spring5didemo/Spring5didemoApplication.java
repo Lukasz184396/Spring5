@@ -4,6 +4,7 @@ import com.zawadal.spring5didemo.controllers.ConstructorInjectedController;
 import com.zawadal.spring5didemo.controllers.MyController;
 import com.zawadal.spring5didemo.controllers.PropertyInjectedController;
 import com.zawadal.spring5didemo.controllers.SetterInjectedController;
+import com.zawadal.spring5didemo.examplebeans.FakeDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -17,9 +18,8 @@ public class Spring5didemoApplication {
 
 		MyController controller = (MyController) ctx.getBean("myController");
 
-		System.out.println(controller.hello());
-		System.out.println(ctx.getBean(PropertyInjectedController.class).sayHallo());
-		System.out.println(ctx.getBean(SetterInjectedController.class).sayHello());
-		System.out.println(ctx.getBean(ConstructorInjectedController.class).sayHello());
+		FakeDataSource fakeDataSource = (FakeDataSource) ctx.getBean(FakeDataSource.class);
+
+		System.out.println(fakeDataSource.getUser());
 	}
 }
