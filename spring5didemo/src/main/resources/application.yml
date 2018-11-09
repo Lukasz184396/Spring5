@@ -3,3 +3,10 @@ guru:
     username: JMS Username
     password: somepass
     url: SomeUrl
+
+--- # file separator yml give us capability to add multiple files
+spring:
+    profiles: de
+guru:
+  jms:
+    username: JMS Username $$$$$ German
