@@ -8,6 +8,7 @@ public class IndexController {
 
     @RequestMapping({"", "/", "/index"})
     public String getIndexPage() {
+        System.out.println("Some message ");
         return "index";  // return name should match html in resources in templates folder
                          // -> index.hml
     }
