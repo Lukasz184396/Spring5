@@ -16,8 +16,10 @@ public class Recipe {
     private Integer servings;
     private String source;
     private String directions;
-    //todo add
-    //private Difficulty difficulty;
+
+    //EnumType.ORDINAL we need to fix ordinal number when we modify enum medium values
+    @Enumerated(EnumType.STRING) //it is more safe when we add values to enum is recognize values by String name
+    private Difficulty difficulty;
 
     /**
      * set up cascade to make Recipe owner of that
@@ -30,6 +32,8 @@ public class Recipe {
 
     @Lob
     private Byte[] images;
+
+
 
     //@OneToOne to create relationship for the OneToOne mapping
     @OneToOne(cascade = CascadeType.ALL)  //set up cascade to make Recipe owner of that
@@ -105,5 +109,21 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }
