@@ -1,6 +1,7 @@
 package com.zawadal.spring5recipeapp.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -17,6 +18,15 @@ public class Recipe {
     private String directions;
     //todo add
     //private Difficulty difficulty;
+
+    /**
+     * set up cascade to make Recipe owner of that
+     * CascadeType.ALL - to persist all operation
+     * this is BI_DIRECTIONAL - //we can navigate in both direction after adding @ManyToOne in Ingredient class
+     * on private Set<Ingredient> ingredients;
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")  //mappedBy we want property in child claas "recipe"
+    private Set<Ingredient> ingredients;
 
     @Lob
     private Byte[] images;
