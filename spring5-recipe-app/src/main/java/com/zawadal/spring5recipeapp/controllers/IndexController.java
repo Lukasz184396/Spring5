@@ -4,7 +4,9 @@ import com.zawadal.spring5recipeapp.domain.Category;
 import com.zawadal.spring5recipeapp.domain.UnitOfMeasure;
 import com.zawadal.spring5recipeapp.repositiories.CategoryRepository;
 import com.zawadal.spring5recipeapp.repositiories.UnitOfMeasureRepository;
+import com.zawadal.spring5recipeapp.services.RecipeServiceImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
@@ -12,21 +14,15 @@ import java.util.Optional;
 @Controller
 public class IndexController {
 
-    private CategoryRepository categoryRepository;
-    private UnitOfMeasureRepository unitOfMeasureRepository;
+    private final RecipeServiceImpl recipeServiceImpl;
 
-    public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
-        this.categoryRepository = categoryRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    public IndexController(RecipeServiceImpl recipeServiceImpl) {
+        this.recipeServiceImpl = recipeServiceImpl;
     }
 
     @RequestMapping({"", "/", "/index"})
-    public String getIndexPage() {
-        Optional<Category> categoryOptional = categoryRepository.findByDescription("American");
-        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
-        System.out.println("Category Id is: " + categoryOptional.get().getId());
-        System.out.println("UnitOfMeasure Id is : " + unitOfMeasureOptional.get().getId());
-        return "index";  // return name should match html in resources in templates folder
-                         // -> index.hml
+    public String getIndexPage(Model model) {
+        model.addAttribute("recipes", recipeServiceImpl.getRecipes());
+        return "index";
     }
 }

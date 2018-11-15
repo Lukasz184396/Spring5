@@ -1,6 +1,7 @@
 package com.zawadal.spring5recipeapp.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,8 @@ public class Recipe {
     private Integer cookTime;
     private Integer servings;
     private String source;
+
+    @Lob
     private String directions;
 
     //EnumType.ORDINAL we need to fix ordinal number when we modify enum medium values
@@ -28,7 +31,7 @@ public class Recipe {
      * on private Set<Ingredient> ingredients;
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")  //mappedBy we want property in child claas "recipe"
-    private Set<Ingredient> ingredients;
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     @Lob
     private Byte[] images;
@@ -42,7 +45,7 @@ public class Recipe {
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     public Long getId() {
         return id;
