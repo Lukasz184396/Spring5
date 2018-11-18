@@ -4,6 +4,7 @@ import com.zawadal.spring5recipeapp.domain.*;
 import com.zawadal.spring5recipeapp.repositiories.CategoryRepository;
 import com.zawadal.spring5recipeapp.repositiories.RecipeRepository;
 import com.zawadal.spring5recipeapp.repositiories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 //ugly really ugly code!!!!
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private CategoryRepository categoryRepository;
@@ -27,6 +29,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         recipeRepository.saveAll(getRecipes());
+        log.debug("Loading bootstrap data");
     }
     private List<Recipe> getRecipes() {
         List<Recipe> recipes = new ArrayList<>(2);
