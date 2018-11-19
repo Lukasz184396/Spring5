@@ -1,17 +1,16 @@
 package com.zawadal.spring5recipeapp.domain;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-//Todo check why @Data does not work
-@Getter
-@Setter
+
+@Data
+@EqualsAndHashCode(exclude = "recipe") //only @Data does not work without it
 @Entity
-public class Ingredient  {
+public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
