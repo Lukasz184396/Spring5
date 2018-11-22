@@ -4,6 +4,7 @@ import com.zawadal.spring5recipeapp.domain.Category;
 import com.zawadal.spring5recipeapp.domain.UnitOfMeasure;
 import com.zawadal.spring5recipeapp.repositiories.CategoryRepository;
 import com.zawadal.spring5recipeapp.repositiories.UnitOfMeasureRepository;
+import com.zawadal.spring5recipeapp.services.RecipeService;
 import com.zawadal.spring5recipeapp.services.RecipeServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,17 +17,17 @@ import java.util.Optional;
 @Controller
 public class IndexController {
 
-    private final RecipeServiceImpl recipeServiceImpl;
+    private final RecipeService recipeService;
 
-    public IndexController(RecipeServiceImpl recipeServiceImpl) {
-        this.recipeServiceImpl = recipeServiceImpl;
+    public IndexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     @RequestMapping({"", "/", "/index"})
     public String getIndexPage(Model model) {
         log.debug("Getting Index page");
 
-        model.addAttribute("recipes", recipeServiceImpl.getRecipes());
+        model.addAttribute("recipes", recipeService.getRecipes());
         return "index";
     }
 }
