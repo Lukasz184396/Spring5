@@ -1,5 +1,7 @@
 package com.zawadal.spring5recipeapp.services;
 
+import com.zawadal.spring5recipeapp.converters.RecipeCommandToRecipe;
+import com.zawadal.spring5recipeapp.converters.RecipeToRecipeCommand;
 import com.zawadal.spring5recipeapp.domain.Recipe;
 import com.zawadal.spring5recipeapp.repositiories.RecipeRepository;
 import org.junit.Before;
@@ -21,11 +23,16 @@ public class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
-
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
@@ -44,7 +51,7 @@ public class RecipeServiceImplTest {
     }
 
     @Test
-    public void getRecipeByIdTest(){
+    public void getRecipeByIdTest() {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
         Optional<Recipe> recipeOptional = Optional.of(recipe);
