@@ -37,7 +37,9 @@ public class RecipeServiceIT {
     public void testSaveOfDescription() throws Exception {
         //given
         Iterable<Recipe> recipes = recipeRepository.findAll();
-        Recipe testRecipe = recipes.iterator().next();
+        Recipe testRecipe = recipes.
+                iterator().
+                next();
         RecipeCommand testRecipeCommand = recipeToRecipeCommand.convert(testRecipe);
 
         //when

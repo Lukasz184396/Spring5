@@ -1,12 +1,17 @@
 package com.zawadal.spring5recipeapp.domain;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@RequiredArgsConstructor
 @Entity
 public class Recipe {
 
@@ -65,4 +70,22 @@ public class Recipe {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", prepTime=" + prepTime +
+                ", cookTime=" + cookTime +
+                ", servings=" + servings +
+                ", source='" + source + '\'' +
+                ", url='" + url + '\'' +
+                ", directions='" + directions + '\'' +
+                ", difficulty=" + difficulty +
+                ", ingredients=" + ingredients +
+                ", images=" + Arrays.toString(images) +
+//                ", notes=" + notes +
+//                ", categories=" + categories +
+                '}';
+    }
 }
