@@ -69,7 +69,7 @@ public class Recipe {
             notes.setRecipe(this);
         }
     }
-
+    //todo fix problem with missing notes and categories in toString
     @Override
     public String toString() {
         return "Recipe{" +
