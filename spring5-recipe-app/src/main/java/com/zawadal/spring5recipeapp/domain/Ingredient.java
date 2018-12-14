@@ -19,7 +19,7 @@ public class Ingredient {
     private BigDecimal amount;
 
     @OneToOne(fetch = FetchType.EAGER)  //fetch all the time (not only for demand)
-    private UnitOfMeasure unitOfMeasure;
+    private UnitOfMeasure uom;
 
     /**
      * Added Many to One to in this class to make inverse side of relationship (now is BI_DIRECTIONAL)
@@ -34,13 +34,13 @@ public class Ingredient {
     public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure) {
         this.description = description;
         this.amount = amount;
-        this.unitOfMeasure = unitOfMeasure;
+        this.uom = unitOfMeasure;
     }
 
     public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure, Recipe recipe) {
         this.description = description;
         this.amount = amount;
-        this.unitOfMeasure = unitOfMeasure;
+        this.uom = unitOfMeasure;
         this.recipe = recipe;
     }
 
